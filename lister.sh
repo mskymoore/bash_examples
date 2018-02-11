@@ -13,7 +13,7 @@
 # ~$./lister.sh woah1 woah2 woah3 woahBuddy
 #
 # Will cause the creation of a file titled woah1, woah2, and so on.
-# Each file will have some text appended to it, regargdless of if it
+# Each file will have some text appended to it, regardless of if it
 # existed prior to the execution of the script, or was created by the
 # script.
 
