@@ -2,10 +2,10 @@
 
 # Some output to the user
 printf "Enter desired number of loops: "
-printf "\n"
 
 # read number of loops desired by user
 read loopNums 
+printf "\n"
 
 # did the user give us a number
 [ $loopNums -ne $loopNums ] &> /dev/null
