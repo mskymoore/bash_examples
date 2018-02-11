@@ -1,5 +1,21 @@
 #!/bin/bash
 
+#Author: Sky Moore
+#Date: 2/10/2018
+
+# This script accepts many arguments, and in parallel checks to
+# see if those argument strings are files in the working directory
+# and if they are not they are created and some strings appended
+# regardless of their creation time.
+
+# For example executing the following:
+# 
+# ~$./lister.sh woah1 woah2 woah3 woahBuddy
+#
+# Will cause the creation of a file titled woah1, woah2, and so on.
+# Each file will have some text appended to it, regargdless of if it
+# existed prior to the execution of the script, or was created by the
+# script.
 
 function makeFileIfNotExists {
 	ls $1 &> /dev/null
