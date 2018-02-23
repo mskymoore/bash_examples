@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Title:	RenameAndReplaceWith.sh
+# Title:	RenameAndReplace.sh
 # Author:	Sky Moore (mskymoore@gmail.com)
 # Summary:	Takes username hostname path to a file or directory, 
 #		renames it, and replaces it with a local file or directory.
