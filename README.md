@@ -9,3 +9,5 @@ getName.sh : Regular console input and output. Exit code underflow.
 readingLoop.sh : Example of looping and input validation.
 hello.sh : Customary hello_world.
 test.sh : Used for testing version control features.
+RenameAndReplace.sh : Renames a file or directory on a remote host and replaces it with a local one.
+			Example of getopts, testing files and directories, scp, conditionals, keywords etc.
