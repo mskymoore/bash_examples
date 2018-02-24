@@ -1,0 +1,7 @@
+#!/bin/bash
+
+if ssh 192.168.1.3 [[ -e ./remote_file ]];then
+	echo "file found"
+else
+	echo "file not found"
+fi

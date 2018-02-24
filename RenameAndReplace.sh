@@ -53,41 +53,32 @@ then
 	usage
 fi
 
-# boolean for signaling status of LocalPath
-validPath=0
-
-# if LocalPath is a file or a directory
-if $([[ -f $LocalPath  ]] || [[ -d $LocalPath ]]);
-then
-	validPath=1
-# else it's invalid or doesn't exist
-else
-	echo "Local path entered is invalid or does not exist."
-	exit 2	
-fi
-
 # if a valid path was sent in
-if [[ $validPath == 1 ]]
+if [[ -e $LocalPath ]]
 then
 	echo "Local path is valid."
-	echo "Renaming $UserName$HostName:$RemotePath" " to " $RemotePath"_OLD"
-	# Rename the file to replace on the remote host
-	ssh $UserName$HostName mv $RemotePath $RemotePath"_OLD"
-	# if LocalPath is a directory
-	if [[ -d $LocalPath ]];then
-		echo "Transferring directory $LocalPath to $UserName$HostName:$RemotePath"
-		# call scp with -r option for recursively copying directory contents
-		scp -r $LocalPath $UserName$HostName:$RemotePath
-	# elif LocalPath is a regular file
-	elif [[ -f $LocalPath ]];then
-		echo "Transferring file $LocalPath to $UserName$HostName:$RemotePath"
-		# call scp with no options
-		scp $LocalPath $UserName$HostName:$RemotePath
-	# else LocalPath is something else, this statement should never be reached
+	if ssh $UserName$HostName [[ -e $RemotePath  ]];then
+		echo "Remote path is valid."
+		echo "Renaming $UserName$HostName:$RemotePath" " to " $RemotePath"_OLD"
+		# Rename the file to replace on the remote host
+		ssh $UserName$HostName mv $RemotePath $RemotePath"_OLD"
+		# if LocalPath is a directory
+		if [[ -d $LocalPath ]];then
+			echo "Transferring directory $LocalPath to $UserName$HostName:$RemotePath"
+			# call scp with -r option for recursively copying directory contents
+			scp -r $LocalPath $UserName$HostName:$RemotePath
+		# elif LocalPath is a regular file
+		elif [[ -f $LocalPath ]];then
+			echo "Transferring file $LocalPath to $UserName$HostName:$RemotePath"
+			# call scp with no options
+			scp $LocalPath $UserName$HostName:$RemotePath
+		# else LocalPath is something else, this statement should never be reached
+		else
+			printf "Local directory or file path is invalid.\n"
+			exit 2
+		fi
 	else
-		printf "Local directory or file path is invalid.\n"
-		exit 2
-
+		echo "Remote file not found"
 	fi
 # else a valid path was not found, this statement should never be reached.
 else
