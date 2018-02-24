@@ -74,13 +74,15 @@ then
 			scp $LocalPath $UserName$HostName:$RemotePath
 		# else LocalPath is something else, this statement should never be reached
 		else
-			printf "Local directory or file path is invalid.\n"
+			echo "Local path entered is invalid or does not exist."		
 			exit 2
 		fi
+		echo "Transfer complete."
 	else
-		echo "Remote file not found"
+		echo "Remote path entered is invalid or does not exist."
+		exit 2
 	fi
-# else a valid path was not found, this statement should never be reached.
+# else a valid path was not found.
 else
 	echo "Local path entered is invalid or does not exist."
 	exit 2
