@@ -12,8 +12,8 @@
 
 
 # Usage function displays name of script called, then searches the script for
-# any character followed by, ") #" which prints the comments next to the cases
-# for handling cmd line arguments and then exits.
+# the string structure found in the case declarations in the while getopts block below.
+# This prints the comments next to the cases for handling cmd line arguments and then exits.
 usage() { echo "$0 usage:" && grep ".)\ #" $0; exit 3; }
 
 # if there are no arguments sent to this script, call usage function
@@ -40,6 +40,7 @@ while getopts ":hu:c:r:l:" arg; do
 			echo "LocalPath: $LocalPath"
 			;;
 		h | *) # Display this help message.
+			usage
 			exit 3
 			;;
 	esac
