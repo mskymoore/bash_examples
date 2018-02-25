@@ -49,7 +49,7 @@ if [[ -e $InputFile ]];then
 			*) echo "$line status: $status."
 				;;
 		esac			
-	done < $InputFile
+	done
 else
 	echo "File passed is invalid or does not exist."
 	exit 1
