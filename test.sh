@@ -1,7 +1,12 @@
 #!/bin/bash
 
-printf "This is a test, for checking stuff out."
-printf "This is a test, for checking stuff out."
-printf "This is a test, for checking stuff out."
+#out=$(command -v nmcli)
+if [[ $(command -v NOTACOMMAND) ]];then
+	echo "command found"
+else
+	echo "command not found"
+fi
+
+
 
 exit 0

@@ -28,3 +28,7 @@ Used for testing version control features.
 ## RenameAndReplace.sh :
 
 Renames a file or directory on a remote host and replaces it with a local one.  Example of getopts, testing files and directories, scp, conditionals, keywords etc.
+
+## ImportOvpnFiles.sh :
+
+A handy little script which checks for existing duplicate connections before importing a bunch of .ovpn files in a directory with nmcli.
