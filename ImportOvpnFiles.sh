@@ -1,5 +1,17 @@
 #!/bin/bash
 
+
+# Title:	ImportOvpnFiles.sh
+# Author:	Sky Moore (mskymoore@gmail.com)
+# Summary:	Takes a directory, searches for .ovpn files, checks if there are connections named 
+#		the same, imports those connections that done have duplicates with nmcli.
+# Options:	[-d /directory/to/search/]
+# Exit Codes:   0: Successful Execution
+#		1: nmcli not installed on this system
+#		2: No .ovpn files found in the directory supplied
+#		3: Directory supplied is invalid or does not exist
+
+
 usage() { echo "$0 usage:" && grep ".)\ #" $0; exit 1; }
 
 # if this environment has nmcli available
