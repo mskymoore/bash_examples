@@ -36,7 +36,8 @@ if [[ -z $InputFile ]];then
 fi
 
 if [[ -e $InputFile ]];then
-	while read -r line
+	IFS=$'\n' read -d '' -r -a lines < $InputFile
+	for line in "${lines[@]}"
 	do
 		#do what with each line
 		status=$(ssh -o BatchMode=yes -o ConnectTimeout=15 $line echo ok 2>&1)
