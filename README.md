@@ -31,4 +31,8 @@ Renames a file or directory on a remote host and replaces it with a local one.  
 
 ## ImportOvpnFiles.sh :
 
-A handy little script which checks for existing duplicate connections before importing a bunch of .ovpn files in a directory with nmcli.
+A handy little script which checks for existing duplicate connections before importing a bunch of .ovpn files in a directory with nmcli
+
+## testSSHConnection.sh :
+
+Feed it a file with each line being username@hostname or and ip address and it will attempt to ssh into each of them and report the status to the console.  I use this to test that my ssh key authentication is up to date on servers.
