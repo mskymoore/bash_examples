@@ -47,7 +47,7 @@ if [[ -e $HostsFile ]];then
 			ok) 
 				echo "Connected to $aHost successfully."
 				echo "Attempting to execute $Script on $aHost"
-				ssh -o ConnectTimeout=10 $aHost 'bash -s' < $Script
+				ssh -o ConnectTimeout=10 $aHost 'bash -s' < $Script &
 			;;
 			*"Permission denied"*) 
 				echo "Failed to connect to $aHost."
@@ -58,6 +58,7 @@ if [[ -e $HostsFile ]];then
 		esac
 					
 	done	
+	wait
 else
 	echo "$HostsFile is invalid or does not exist."
 	exit 1
