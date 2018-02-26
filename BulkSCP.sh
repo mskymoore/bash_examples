@@ -1,14 +1,13 @@
 #!/bin/bash
 
-
 # Title:	BulkSCP.sh
 # Author:       Sky Moore (mskymoore@gmail.com)
 # Summary:      Attempts to log in to ssh servers with username@hostname lines read from input file, and reports to the console the result of the attempt to copy InputFile to RemotePath on each host listed in HostsFile.
-#               
+#
 # Options:      [-i /file/to/copy to remote host -H /file/to/read/hosts/from -r /remote/path/to/copy/to/][-h print help]
 # Exit Codes:   0: successful execution
 #               1: help printed or bad arguments
-#               2: 
+#               2: bad arguments 
 #               3: 
 
 usage() { echo "$0 usage:" && grep ".)\ #" $0; exit 1; }
@@ -25,7 +24,7 @@ while getopts ":hH:i:r:" arg;do
 			InputFile=$(readlink -f ${OPTARG})
 			;;
 		r) # Remote directory to copy Input file or directory to on hosts
-			RemotePath=${OPTARG}
+			RemotePath="${OPTARG}"
 			;;
 		#p)## Request a password to log in to all username@hostname with
 		#	read -s -p "Password: " Password	
@@ -35,6 +34,12 @@ while getopts ":hH:i:r:" arg;do
 			;;
 	esac
 done
+
+if [[ ~ = $RemotePath ]];then
+	echo "You must put expandable paths such as, \"~\" in double quotes."
+	exit 2
+fi
+
 
 if [[ -z $HostsFile ]];then
 	echo "You must supply an input file."
@@ -50,19 +55,19 @@ if [[ -e $HostsFile ]];then
 			case $status in
 				ok) 
 					echo "Connected to $aHost successfully."
-					echo "Checking for $RemotePath on $aHost..."
-					if ssh $aHost [[ -e $RemotePath  ]];then	
+					echo "Checking for ""$RemotePath"" on $aHost..."
+					if ssh $aHost [[ -e "$RemotePath"  ]];then	
 						# if InputFile is a directory
 						if [[ -d $InputFile ]];then
-							echo "Transferring directory $InputFile to $aHost:$RemotePath"
+							echo "Transferring directory $InputFile to $aHost:""$RemotePath"
 							# call scp with -r option for recursively copying directory contents
-							scp -r $InputFile $aHost:$RemotePath
+							scp -r $InputFile $aHost:"$RemotePath"
 							echo "Transfer complete."	
 						# elif InputFile is a regular file
 						elif [[ -f $InputFile ]];then
-							echo "Transferring file $InputFile to $aHost:$RemotePath"
+							echo "Transferring file $InputFile to $aHost:""$RemotePath"
 							# call scp with no options
-							scp $InputFile $aHost:$RemotePath
+							scp $InputFile $aHost:"$RemotePath"
 							echo "Transfer complete."						
 						# else InputFile is something else, this statement should never be reached
 						else
@@ -70,7 +75,7 @@ if [[ -e $HostsFile ]];then
 							exit 2
 						fi
 					else
-						echo "$RemotePath is invalid, does not exist on $aHost."
+						echo "$RemotePath"" is invalid, does not exist on $aHost."
 					fi
 				;;
 				*"Permission denied"*) 
