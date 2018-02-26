@@ -44,3 +44,7 @@ Feed it a file with each line being username@hostname or ip address and it will 
 ## BulkSCP.sh :
 
 Feed it a file with each line being username@hostname or ip address and it will attempt to ssh into each one of them and copy a local file or directory sent in as InputFile to a RemotePath on each host listed in HostsFile.
+
+## BulkScriptExecute.sh :
+
+Feed it a file with each line being a hostname or ip address and it will execute a local script passed to it on each remote host in the HostsFile.
