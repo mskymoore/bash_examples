@@ -1,11 +1,11 @@
 #!/bin/bash
 
 
-# Title:	testSSHConnection.sh
+# Title:	BulkOP.sh
 # Author:       Sky Moore (mskymoore@gmail.com)
-# Summary:      Attempts to log in to ssh servers with username@hostname lines read from input file, and reports to the console the result of the attempt.
+# Summary:      Attempts to log in to ssh servers with username@hostname lines read from input file, and reports to the console the result of the attempt to execute OP.
 #               
-# Options:      [-i /file/to/read/from]
+# Options:      [-H /file/to/read/from -o OP]
 # Exit Codes:   0: successful execution
 #               1: help printed or bad arguments
 #               2: 

@@ -1,11 +1,11 @@
 #!/bin/bash
 
 
-# Title:	testSSHConnection.sh
+# Title:	BulkSCP.sh
 # Author:       Sky Moore (mskymoore@gmail.com)
-# Summary:      Attempts to log in to ssh servers with username@hostname lines read from input file, and reports to the console the result of the attempt.
+# Summary:      Attempts to log in to ssh servers with username@hostname lines read from input file, and reports to the console the result of the attempt to copy InputFile to RemotePath on each host listed in HostsFile.
 #               
-# Options:      [-i /file/to/read/from]
+# Options:      [-i /file/to/copy to remote host -H /file/to/read/hosts/from -r /remote/path/to/copy/to/][-h print help]
 # Exit Codes:   0: successful execution
 #               1: help printed or bad arguments
 #               2: 

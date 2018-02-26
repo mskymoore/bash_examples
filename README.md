@@ -36,3 +36,11 @@ A handy little script which checks for existing duplicate connections before imp
 ## testSSHConnection.sh :
 
 Feed it a file with each line being username@hostname or and ip address and it will attempt to ssh into each of them and report the status to the console.  I use this to test that my ssh key authentication is up to date on servers.
+
+## BulkOP.sh :
+
+Feed it a file with each line being username@hostname or ip address and it will attempt to ssh into each of them and execute the string sent in as OP.
+
+## BulkSCP.sh :
+
+Feed it a file with each line being username@hostname or ip address and it will attempt to ssh into each one of them and copy a local file or directory sent in as InputFile to a RemotePath on each host listed in HostsFile.
